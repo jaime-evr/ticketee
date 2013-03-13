@@ -1,5 +1,6 @@
-<h2><%= @project.name %></h2>
+<% @title(@project.name, "Projects") %>
 
 <p>
+  <strong>Name: </strong><%= @project.name %><br />
   <strong>Descripcion: </strong><%= @project.description %>
 </p>
