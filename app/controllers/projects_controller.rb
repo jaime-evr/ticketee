@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
       redirect_to @project
     else
       flash[:alert] = "product error"
+      render :action => "new"
     end
   end
 

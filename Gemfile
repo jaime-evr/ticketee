@@ -10,7 +10,9 @@ group :test, :developement do
 end
 
 group :test do
-  gem 'capybara', '1.1.2'
+  gem 'minitest-rails'
+  gem 'minitest-rails-capybara'
+  gem 'minitest-focus'
 end
 
 # Gems used only for assets and not required

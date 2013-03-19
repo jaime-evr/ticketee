@@ -5,4 +5,5 @@ module ApplicationHelper
         (parts << "Ticketee").join(" - ")
       end
     end
+  end
 end
