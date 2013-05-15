@@ -4,6 +4,19 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    params.inspect
+    @project = Project.find(params[:id])
+    @project.inspect
+    @project.update_attributes(permited_params)
+    flash[:notice] = "Project has been edited"
+    redirect_to @project
+  end
+
   def new
     @project = Project.new
   end
