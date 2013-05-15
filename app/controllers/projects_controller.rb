@@ -9,12 +9,14 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    params.inspect
     @project = Project.find(params[:id])
-    @project.inspect
-    @project.update_attributes(permited_params)
-    flash[:notice] = "Project has been edited"
-    redirect_to @project
+    if @project.update_attributes(permited_params)
+      flash[:notice] = "Project has been updated"
+      redirect_to @project
+    else
+      flash[:alert] = "All fields required"
+      redirect_to action: "edit"
+    end
   end
 
   def new
@@ -28,11 +30,19 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(permited_params)
     if @project.save
-      flash[:notice] = "Product has been created."
+      flash[:notice] = "Project has been created."
       redirect_to @project
     else
-      flash[:alert] = "product error"
-      render :action => "new"
+      flash[:alert] = "All fields required"
+      render action: "new"
+    end
+  end
+
+  def destroy
+    @project = Project.find(params[:id])
+    if @project.destroy
+      flash[:notice] = "Project has been deleted"
+      redirect_to projects_path 
     end
   end
 
