@@ -1,15 +1,15 @@
 class ProjectsController < ApplicationController
+
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
   
   def index
     @projects = Project.all
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
     if @project.update_attributes(permited_params)
       flash[:notice] = "Project has been updated"
       redirect_to @project
@@ -24,7 +24,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
   end
 
   def create
@@ -39,7 +38,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
     if @project.destroy
       flash[:notice] = "Project has been deleted"
       redirect_to projects_path 
@@ -47,6 +45,12 @@ class ProjectsController < ApplicationController
   end
 
   private
+  def find_project
+    @project = Project.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "the project you were looking for culd not be found"
+  end
+
   def permited_params
     params.require(:project).permit(:name, :description)
   end
