@@ -6,10 +6,10 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @ticket = @project.tickets.build(params[:ticket])
+    @ticket = @project.tickets.build(permited_params)
     if @ticket.save
       flash[:notice] = "Ticket has been created"
-      redirect_to [@project, @ticket]
+      redirect_to [@project]
     else
       flash[:alert] = "All fields required"
       render action: "new"
