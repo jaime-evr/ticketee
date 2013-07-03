@@ -15,7 +15,7 @@
 <ul id="tickets">
   <%  @project.tickets.each do |ticket| %>
     <li>
-      #<%= ticket.id %> - 
+      #<%= ticket.id %> -
       <%= link_to ticket.title, [@project, ticket] %>
     </li>
   <% end %>
