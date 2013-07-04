@@ -10,7 +10,6 @@ class TicketsController < ApplicationController
     @ticket = @project.tickets.build(permited_params)
     if @ticket.save
       flash[:notice] = "Ticket has been created"
-      binding.pry
       redirect_to [@project, @ticket]
     else
       flash[:alert] = "All fields required"
@@ -25,6 +24,13 @@ class TicketsController < ApplicationController
   end
 
   def update
+    if @ticket.update_attributes(permited_params)
+      flash[:notice] = "Ticket has been updated"
+      redirect_to [@project, @ticket]
+    else
+      flash[:alert] = "An error has ocurred while updating the ticket"
+      redirect_to [:edit, @project, @ticket]
+    end
   end
 
   private
