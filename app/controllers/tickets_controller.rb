@@ -29,7 +29,7 @@ class TicketsController < ApplicationController
       redirect_to [@project, @ticket]
     else
       flash[:alert] = "An error has ocurred while updating the ticket"
-      redirect_to [:edit, @project, @ticket]
+      render_ [:edit, @project, @ticket]
     end
   end
 
