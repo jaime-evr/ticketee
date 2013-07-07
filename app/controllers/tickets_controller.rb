@@ -23,6 +23,17 @@ class TicketsController < ApplicationController
   def show
   end
 
+  def destroy
+    binding.pry
+    if @ticket.destroy
+      flash[:notice] = "Ticket has been deleted"
+      redirect_to @project
+    else
+      flash[:alert] = "An error has ocurred"
+      render action: "show"
+    end
+  end
+
   def update
     if @ticket.update_attributes(permited_params)
       flash[:notice] = "Ticket has been updated"

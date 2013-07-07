@@ -1,4 +1,5 @@
 <h2>Ticket <%= @ticket.title %> </h2>
 <p><%= @ticket.description %></p>
- <%= link_to "Edit Ticket", [:edit, @project, @ticket] %>
+ <%= link_to "Edit ticket", [:edit, @project, @ticket] %>
 <%= link_to "Project tickets", [@project] %>
+<%= link_to "Delete ticket", [@project, @ticket], confirm: "Do you really want to delete this ticket?", method: :delete %>
